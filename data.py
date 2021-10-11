@@ -66,7 +66,7 @@ def rank(solo, flex, me, masteries):
 
 def history(my_matches, me, i=int):
     
-     match_detail = watcher.match.by_id('EUROPE', my_matches[i])
+     match_detail = watcher.match_v5.by_id('EUROPE', my_matches[i])
      for pid in range(0, 10):
           if match_detail["metadata"]["participants"][pid] == me["puuid"]:
                player = match_detail['info']['participants'][pid]

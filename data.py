@@ -45,7 +45,7 @@ def rank(solo, flex, me, masteries):
     embed.set_thumbnail(url="https://static.u.gg/assets/lol/riot_static/11.19.1/img/profileicon/"+str(me['profileIconId'])+".png")
 
     if solo != None:
-        embed.add_field(name="Ranked Solo/Duo", value = solo['tier'] + " " + solo['rank'] + "\n" + str(solo['wins']) + "W " + str(solo['losses']) + "L", inline=True)
+        embed.add_field(name="Ranked Solo/Duo", value = "%s %s - %d LP \n %dW %dL" % (solo['tier'], solo['rank'], solo['leaguePoints'], solo['wins'], solo['losses']), inline=True)
     if flex != None:
          embed.add_field(name="Ranked Flex", value= flex['tier'] + " " + flex['rank'] + "\n" + str(flex['wins']) + "W " + str(flex['losses']) + "L", inline=True)
     if solo == None and flex == None:

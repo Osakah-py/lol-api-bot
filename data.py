@@ -47,7 +47,7 @@ def rank(solo, flex, me, masteries):
     if solo != None:
         embed.add_field(name="Ranked Solo/Duo", value = "%s %s - %d LP \n %dW %dL" % (solo['tier'], solo['rank'], solo['leaguePoints'], solo['wins'], solo['losses']), inline=True)
     if flex != None:
-         embed.add_field(name="Ranked Flex", value= flex['tier'] + " " + flex['rank'] + "\n" + str(flex['wins']) + "W " + str(flex['losses']) + "L", inline=True)
+         embed.add_field(name="Ranked Flex", value=  "%s %s - %d LP \n %dW %dL" % (flex['tier'], flex['rank'], flex['leaguePoints'], flex['wins'], flex['losses']), inline=True)
     if solo == None and flex == None:
          embed.add_field(name="Unranked", value = "Level " + str(me['summonerLevel']), inline=False)
 

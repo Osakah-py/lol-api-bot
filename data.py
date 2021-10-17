@@ -36,8 +36,9 @@ branches = {}
 for i in runes_list:
     branches[i['id']] = i['name']
 
-# Même chose pours les summoner spells
+# Même chose pours les summoner spells et les Queues
 summonerspells = {1:"Cleanse", 3:"Exhaust", 4:"Flash", 6:"Ghost", 7:"Heal", 11:"Smite", 12:"Teleport", 14:"Ignite", 21:"Barrier"}
+queue = {0:"Custom games", 430:"Blind Pick", 420:"Ranked Solo/Duo", 440:"Ranked Flex", 400:"Draft"}
 #######################################################Fonctions#######################################################
 
 def rank(solo, flex, me, masteries):
@@ -71,6 +72,9 @@ def history(my_matches, me, i=int):
           if match_detail["metadata"]["participants"][pid] == me["puuid"]:
                player = match_detail['info']['participants'][pid]
                break
+     
+     if match_detail['info']['gameMode'] == "CLASSIC":
+        match_detail['info']['gameMode'] = queue[match_detail['info']['queueId']]
      
      if player['win']:
           embed = discord.Embed(title=match_detail['info']['gameMode'], description=summonerspells[player['summoner1Id']] + " / " + summonerspells[player['summoner2Id']] + " | " + str(player['totalMinionsKilled'] + player['neutralMinionsKilled']) + " cs" + " | Niveau " + str(player['champLevel']), color=0x33FF57)

@@ -32,13 +32,13 @@ my_region = 'euw1'
 
 @client.event
 async def on_ready():
+    await client.change_presence(activity=discord.Game(name="Eve help"))
     print(f"{client.user} has connected to Discord!")
     print("**********************\n* LISTE DES SERVEURS *\n**********************")
     for guild in client.guilds:
         print(f"{guild.name} (id: {guild.id})")
 
 @client.event
-
 async def on_message(message):
     
     # Pour éviter que le bot se réponde tout seul
@@ -83,7 +83,7 @@ async def on_message(message):
 
         try:
             me = watcher.summoner.by_name(my_region, user)
-            my_matches = watcher.match_v5.matchlist_by_puuid('EUROPE', me['puuid'])  
+            my_matches = watcher.match.matchlist_by_puuid('EUROPE', me['puuid'])  
 
             for i in range(0, 5):
                 embed = data.history(my_matches, me, i)

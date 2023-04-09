@@ -37,13 +37,13 @@ for i in runes_list:
     branches[i['id']] = i['name']
 
 # Même chose pours les summoner spells et les Queues
-summonerspells = {1:"Cleanse", 3:"Exhaust", 4:"Flash", 6:"Ghost", 7:"Heal", 11:"Smite", 12:"Teleport", 14:"Ignite", 21:"Barrier"}
+summonerspells = {1:"Cleanse", 3:"Exhaust", 4:"Flash", 6:"Ghost", 7:"Heal", 11:"Smite", 12:"Teleport", 14:"Ignite", 21:"Barrier", 32:"SnowBall"}
 queue = {0:"Custom games", 430:"Blind Pick", 420:"Ranked Solo/Duo", 440:"Ranked Flex", 400:"Draft"}
 #######################################################Fonctions#######################################################
 
 def rank(solo, flex, me, masteries):
     embed = discord.Embed(title=me['name'], description="Level " + str(me['summonerLevel']), color=0xFF5733)
-    embed.set_thumbnail(url="https://static.u.gg/assets/lol/riot_static/11.19.1/img/profileicon/"+str(me['profileIconId'])+".png")
+    embed.set_thumbnail(url="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/"+str(me['profileIconId'])+".png")
 
     if solo != None:
         embed.add_field(name="Ranked Solo/Duo", value = "%s %s - %d LP \n %dW %dL" % (solo['tier'], solo['rank'], solo['leaguePoints'], solo['wins'], solo['losses']), inline=True)
@@ -67,12 +67,12 @@ def rank(solo, flex, me, masteries):
 
 def history(my_matches, me, i=int):
     
-     match_detail = watcher.match_v5.by_id('EUROPE', my_matches[i])
+     match_detail = watcher.match.by_id('EUROPE', my_matches[i])
      for pid in range(0, 10):
           if match_detail["metadata"]["participants"][pid] == me["puuid"]:
                player = match_detail['info']['participants'][pid]
                break
-     
+
      if match_detail['info']['gameMode'] == "CLASSIC":
         match_detail['info']['gameMode'] = queue[match_detail['info']['queueId']]
      
@@ -92,7 +92,7 @@ def history(my_matches, me, i=int):
           kills = "Triple Kills  "
      elif player['largestMultiKill']==2:
           kills = "Double Kills  " 
-     
+
      embed.add_field(name=str(player['kills']) + "/" + str(player['deaths']) + "/" + str(player['assists']), value = kills, inline=True)
      
      embed.add_field(name=runes_dict[player['perks']['styles'][0]['selections'][0]['perk']], value = branches[player['perks']['styles'][1]['style']], inline=True)

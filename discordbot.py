@@ -1,4 +1,4 @@
-import os
+from decouple import config
 import tri
 import data
 
@@ -10,15 +10,12 @@ from dotenv import load_dotenv, find_dotenv
 #Riot API
 from riotwatcher import LolWatcher, ApiError
 
-#load_dotenv(find_dotenv())
-#TOKEN = os.getenv('DISCORD_TOKEN')
-
 ############################
 # Environnements Variables #
 ############################
 
 # Discord
-TOKEN = "ODkwMjI4NDE2NTEzNzA4MDQy.YUsv0g.pCT1iug2eWsz1m-jirgkRmtwWdQ"
+TOKEN = config('DISCORD_TOKEN')
 client = discord.Client()
 
 # Riot 

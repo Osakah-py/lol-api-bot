@@ -119,4 +119,8 @@ async def on_message(message):
             else:
                 await message.channel.send("Erreur inconnue : "+ str(err.response.status_code))
                 raise Exception("Erreur inconnue : " + str(err.response.status_code))
+    
+    if msg.startswith("details"):
+        split = msg.split("details ")
+        await message.channel.send("Soon " + split[0])
 client.run(TOKEN)

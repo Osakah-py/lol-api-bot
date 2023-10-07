@@ -19,7 +19,7 @@ TOKEN = config('DISCORD_TOKEN')
 client = discord.Client()
 
 # Riot 
-api_key = 'RGAPI-909e469f-2c99-46b3-b66f-eca9e87580a5'
+api_key = config('RIOT_TOKEN')
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
 

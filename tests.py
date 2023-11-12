@@ -1,8 +1,8 @@
 from riotwatcher import LolWatcher, ApiError
-import riotwatcher
 import tri
+from decouple import config
 
-api_key = 'RGAPI-909e469f-2c99-46b3-b66f-eca9e87580a5'
+api_key = config('RIOT_TOKEN')
 watcher = LolWatcher(api_key)
 my_region = 'euw1'
 
@@ -49,9 +49,9 @@ print("SOLOQ : " + solo['tier'] + " " + solo['rank'])
 #print("FLEX : " + flex['tier'] + " " + flex['rank'])
 print("\n----------------\n")
 
-my_match = watcher.match_v5.matchlist_by_puuid('EUROPE', me['puuid'])
+my_match = watcher.match.matchlist_by_puuid('EUROPE', me['puuid'])
 for i in range(0, 5):
-    match_detail = watcher.match_v5.by_id('EUROPE', my_match[i])
+    match_detail = watcher.match.by_id('EUROPE', my_match[i])
     if match_detail['info']['gameMode'] == "CLASSIC":
         match_detail['info']['gameMode'] = queue[match_detail['info']['queueId']]
     print (match_detail['info']['gameMode'])
